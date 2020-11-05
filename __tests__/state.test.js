@@ -1,12 +1,8 @@
-const fs = require('fs');
-const pool = require('../lib/utils/pool');
+require('../lib/data/data-helper');
 const request = require('supertest');
 const app = require('../lib/app');
 
 describe('state-trackr-be routes', () => {
-  beforeEach(() => {
-    return pool.query(fs.readFileSync('./sql/setup.sql', 'utf-8'));
-  });
 
   it('should add a state to our DB via POST', async() => {
     return request(app)
