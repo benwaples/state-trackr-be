@@ -33,4 +33,11 @@ describe('state-trackr-be routes', () => {
       .get(`/api/v1/states/${firstState.id}`)
       .then(res => expect(res.body).toEqual(firstState));
   });
+
+  it('should delete a visit by id via DELETE', async() => {
+    const firstState = (await State.find())[0];
+    return request(app)
+      .delete(`/api/v1/states/${firstState.id}`)
+      .then(res => expect(res.body).toEqual(firstState));
+  });
 });
