@@ -34,6 +34,25 @@ describe('state-trackr-be routes', () => {
       .then(res => expect(res.body).toEqual(firstState));
   });
 
+  it('should update a state via PATCH', async() => {
+    const firstState = (await State.find())[0];
+
+    return request(app)
+      .patch(`/api/v1/states/${firstState.id}`)
+      .send({
+        name: 'LA',
+        dateVisited: '10-15-15',
+        wasFun: false
+      })
+      .then(res => expect(res.body).toEqual({
+        id: expect.any(String),
+        name: 'LA',
+        dateVisited: '10-15-15',
+        wasFun: false
+      }));
+
+  });
+
   it('should delete a visit by id via DELETE', async() => {
     const firstState = (await State.find())[0];
     return request(app)
