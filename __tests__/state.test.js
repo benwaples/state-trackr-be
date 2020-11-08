@@ -30,7 +30,7 @@ describe('state-trackr-be routes', () => {
   it('should return a single state by id via GET', async() => {
     const firstState = (await State.find())[0];
     return request(app)
-      .get(`/api/v1/states/${firstState.id}`)
+      .get(`/api/v1/states/${firstState.name}`)
       .then(res => expect(res.body).toEqual(firstState));
   });
 
